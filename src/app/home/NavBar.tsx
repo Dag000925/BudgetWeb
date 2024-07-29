@@ -27,7 +27,7 @@ const NavBar: React.FC = () => {
 
   return (
     <div className="h-20 w-screen bg-white fixed">
-      <div className="text-white uppercase flex items-center justify-between h-full font-extrabold text-xl mx-80 hover:cursor-pointer">
+      <div className="text-white uppercase flex items-center justify-between h-full font-extrabold mx-80 hover:cursor-pointer">
         <Link
           activeClass="font-bold text-red-500"
           to="pageAbout"
