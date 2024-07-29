@@ -20,3 +20,5 @@ const Home: React.FC = () => {
 };
 
 export default Home;
+
+// dotorhiin daraa yanzal
