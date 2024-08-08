@@ -4,13 +4,13 @@ import { Layout } from "antd";
 import HeaderComponent from "../components/HeaderComponent";
 import ContentComponent from "../components/ContentComponent";
 //import SiderComponent from "../components/SiderComponent";
-import FooterComponent from "../components/FooterComponent";
+//import FooterComponent from "../components/FooterComponent";
 import { Liquid, LiquidConfig } from "@ant-design/plots";
 
 const { Sider } = Layout;
 
 //const percent = 0.3;
-const config: LiquidConfig = {
+/* const config: LiquidConfig = {
   percent: 0.9,
   style: {
     shape: "pin",
@@ -19,7 +19,7 @@ const config: LiquidConfig = {
     outlineDistance: 8,
     waveLength: 128,
   },
-};
+}; */
 
 const Main: React.FC = () => (
   <div className="min-h-screen flex">
@@ -27,25 +27,8 @@ const Main: React.FC = () => (
       <HeaderComponent />
       <Layout>
         <ContentComponent />
-        {/*<SiderComponent />*/}
-        <Sider
-          reverseArrow={true}
-          collapsible={true}
-          width="25%"
-          collapsedWidth={0}
-          zeroWidthTriggerStyle={{
-            backgroundColor: "white",
-            color: "black",
-            top: "0px",
-          }}
-          theme="light"
-          className="text-center leading-[100px] text-black"
-        >
-          Sider
-          <div className="relative -mt-10">
-            <Liquid {...config} />
-          </div>
-        </Sider>
+        {/* <SiderComponent /> */}
+        
       </Layout>
       {/* <FooterComponent /> */}
     </Layout>

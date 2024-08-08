@@ -13,6 +13,11 @@ import { Line, LineConfig } from "@ant-design/charts";
 // input
 import InputComponent from "./InputComponent";
 
+import PieChart from "../charts/PieChart";
+import LineChart from "../charts/LineChart";
+
+import EmojiButton from "../subComp/EmojiButton";
+
 const { Content } = Layout;
 const { RangePicker } = DatePicker;
 
@@ -29,67 +34,39 @@ const data = [
   { type: "Category Four", value: 15 },
   { type: "Category Five", value: 10 },
   { type: "Others", value: 5 },
-  { type: "Night Out", value: 30 },
+  { type: "Night 1", value: 50 },
+  /*{ type: "Category 1", value: 27 },
+  { type: "Category 2", value: 25 },
+  { type: "Category 3", value: 18 },
+  { type: "Category 4", value: 15 },
+  { type: "Category 5", value: 10 },
+  { type: "Others 2", value: 5 },
+  { type: "Night 3", value: 1 },
+  { type: "Category 12", value: 27 },
+  { type: "Category 22", value: 25 },
+  { type: "Category 32", value: 18 },
+  { type: "Category 43", value: 15 },
+  { type: "Category 54", value: 10 },
+  { type: "Others 23", value: 5 },
+  { type: "Night 31", value: 1 },
+  { type: "Category 59", value: 10 },
+  { type: "Others 28", value: 5 },
+  { type: "Night 37", value: 1 },
+  { type: "Category 16", value: 27 },
+  { type: "Category 25", value: 25 },
+  { type: "Category 37", value: 18 },
+  { type: "Category 49", value: 15 },
+  { type: "Category 59", value: 10 },
+  { type: "Others 20", value: 5 },
+  { type: "Night 39", value: 1 },
+  { type: "分类一", value: 27 },
+  { type: "分类二", value: 25 },
+  { type: "分类三", value: 18 },
+  { type: "分类四", value: 15 },
+  { type: "分类五", value: 10 },
+  { type: "其他", value: 5 }, */
 ];
 
-const config: PieConfig = {
-  width: 550,
-  height: 550,
-  data,
-  angleField: "value",
-  colorField: "type",
-  paddingRight: 80,
-  paddingTop: 0,
-  paddingBottom: 0,
-  innerRadius: 0.5,
-  label: {
-    text: "value",
-    style: {
-      fontWeight: "bold",
-    },
-  },
-  legend: {
-    color: {
-      title: false,
-      position: "left",
-      rowPadding: 5,
-    },
-  },
-  annotations: [
-    {
-      type: "text",
-      style: {
-        text: "Random\nData",
-        x: "50%",
-        y: "50%",
-        textAlign: "center",
-        fontSize: 20,
-        fontStyle: "bold",
-      },
-    },
-  ],
-};
-
-const lineData = data.map((d) => ({
-  category: d.type,
-  value: d.value,
-}));
-
-const lineConfig: LineConfig = {
-  height: 200,
-  width: 550,
-  data: lineData,
-  xField: "category",
-  yField: "value",
-  point: {
-    size: 5,
-    shape: "circle",
-  },
-  lineStyle: {
-    stroke: "#4f9aff",
-  },
-  color: "#4f9aff",
-};
 const ContentComponent: React.FC = () => {
   const [category, setCategory] = useState<string>("");
   const [amount, setAmount] = useState<number>(0);
@@ -123,44 +100,51 @@ const ContentComponent: React.FC = () => {
   };
 
   return (
-    <Content className="text-center min-h-[120px] leading-[50px] text-white flex-shrink-0">
-      Content za enen dotr chn yu yu hiine gd bla bile?shs
-  
-      <div className="flex justify-start mt-4 pl-10">
-        <div className="flex flex-col space-y-0">
-          <div className="flex items-start">
-            <Pie {...config} />
-            <div className="ml-4">
-              <Button onClick={handleAddExpenseClick} className="mb-4">
-                Add Expense
-              </Button>
-              {showInputs && (
-                <div className="flex flex-col space-y-2">
-                  <InputComponent
-                    type="text"
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                    placeholder="Category"
-                  />
-                  <InputComponent
-                    type="number"
-                    value={amount}
-                    onChange={handleAmountChange}
-                    placeholder="Amount"
-                  />
-                  <Button onClick={handleAddExpense}>Submit</Button>
-                </div>
-              )}
+    <Content className="w-screen h-full flex">
+      <div className="flex w-full h-full">
+        <div className="w-1/2 h-full flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center pt-mx-auto">
+            
+            <div className="box-content bg-white grid items-center justify-center border-2 rounded-2xl w-full h-[550px]">
+              <h1 className="font-bold text-2xl ">Expense per day</h1>
+              <PieChart data={data} />
+            </div>
+            <div className="pt-8">
+              <div className="flex flex-col box-content bg-white items-center justify-center border-2 rounded-2xl">
+                <RangePicker presets={rangePresets} onChange={onRangeChange} />
+                <LineChart data={data} />
+              </div>
             </div>
           </div>
-          <div className="mt-1 mb-1">
-            <span className="pr-9">Select data based on range</span>
-            <RangePicker presets={rangePresets} onChange={onRangeChange} />
+        </div>
+        <div className="w-1/2 h-full">
+          <div className="flex flex-col">
+            <div className="flex flex-row justify-between shrink m-10 ">
+              <div className="container box-content h-96 w-96 border-2 bg-white rounded-lg p-4 overflow-y-auto scrollbar-hide">
+                <h1 className="font-bold text-2xl text-center mb-4">
+                  Categories
+                </h1>
+                <hr className="h-px bg-gray-200 w-72 mx-auto mb-4"></hr>
+                <EmojiButton />
+              </div>
+              <div className="box-content w-96 h-96 mr-10 border-2 bg-white rounded-lg p-4">
+                end AI shaana gd bgashd pesda 22nd
+              </div>
+            </div>
+            {/* <div className="flex justify-around m-10 shrink "></div> */}
+            <div className="pl-10 pt-2">
+              <div className="box-content w-[91.5%] h-96 mr-10 border-2 bg-white rounded-lg p-4">
+                hundlun bar charts for saving goal
+              </div>
+            </div>
           </div>
-          <Line {...lineConfig} />
         </div>
       </div>
     </Content>
   );
-}
+};
 export default ContentComponent;
+
+{
+  /**/
+}

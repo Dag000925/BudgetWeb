@@ -13,8 +13,9 @@ const Home: React.FC = () => {
       <NavBar/>
       <About/>
       <Feature/>
-      <Contact/>
       <Login/>
+      <Contact/>
+      
     </>
   );
 };

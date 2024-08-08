@@ -4,6 +4,7 @@ import "./globals.css";
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { Layout } from "antd";
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
