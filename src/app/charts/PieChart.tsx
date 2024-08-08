@@ -10,8 +10,8 @@ const PieChart: React.FC<PieChartProps> = ({ data }) => {
   const chartRef = useRef<any>(null);
 
   const config: PieConfig = {
-    width: 550,
-    height: 550,
+    width: 450,
+    height: 450,
     data,
     angleField: "value",
     colorField: "type",

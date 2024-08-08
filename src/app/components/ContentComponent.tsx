@@ -105,12 +105,15 @@ const ContentComponent: React.FC = () => {
         <div className="w-1/2 h-full flex flex-col items-center justify-center">
           <div className="flex flex-col items-center pt-mx-auto">
             
-            <div className="box-content bg-white grid items-center justify-center border-2 rounded-2xl w-full h-[550px]">
-              <h1 className="font-bold text-2xl ">Expense per day</h1>
+            <div className="box-content bg-white grid items-center justify-center border-2 rounded-lg w-full h-[550px]">
+              <h1 className="font-bold text-xl mb-4 mt-4 text-center">Expense per day</h1>
+              <hr className="h-px bg-gray-200 w-72 mx-auto"></hr>
               <PieChart data={data} />
             </div>
-            <div className="pt-8">
-              <div className="flex flex-col box-content bg-white items-center justify-center border-2 rounded-2xl">
+            <div className="pt-3">
+              <div className="flex flex-col box-content bg-white items-center justify-center border-2 rounded-lg">
+                <h1 className="font-bold text-xl mb-4 mt-4">Expense by range</h1>
+                <hr className="h-px bg-gray-200 w-72 mx-auto mb-4"></hr>
                 <RangePicker presets={rangePresets} onChange={onRangeChange} />
                 <LineChart data={data} />
               </div>
@@ -119,21 +122,25 @@ const ContentComponent: React.FC = () => {
         </div>
         <div className="w-1/2 h-full">
           <div className="flex flex-col">
-            <div className="flex flex-row justify-between shrink m-10 ">
+            <div className="flex flex-row justify-between shrink m-3 ">
               <div className="container box-content h-96 w-96 border-2 bg-white rounded-lg p-4 overflow-y-auto scrollbar-hide">
-                <h1 className="font-bold text-2xl text-center mb-4">
+                <h1 className="font-bold text-xl text-center mb-4">
                   Categories
                 </h1>
                 <hr className="h-px bg-gray-200 w-72 mx-auto mb-4"></hr>
                 <EmojiButton />
               </div>
-              <div className="box-content w-96 h-96 mr-10 border-2 bg-white rounded-lg p-4">
+              <div className="box-content w-[50%] h-96 mr-10 border-2 bg-white rounded-lg p-4">
+                <h1 className="font-bold text-xl ml-4 mb-4 text-center">Ask AI</h1>
+                <hr className="h-px bg-gray-200 w-72 mx-auto mb-4"></hr>
                 end AI shaana gd bgashd pesda 22nd
               </div>
             </div>
             {/* <div className="flex justify-around m-10 shrink "></div> */}
-            <div className="pl-10 pt-2">
-              <div className="box-content w-[91.5%] h-96 mr-10 border-2 bg-white rounded-lg p-4">
+            <div className="pl-3 pt-16">
+              <div className="box-content w-[95%] h-[413px] mr-10 border-2 bg-white rounded-lg p-4">
+                <h1 className="font-bold text-xl ml-4 mb-4 text-center">Saving Goal</h1>
+                <hr className="h-px bg-gray-200 w-72 mx-auto mb-4"></hr>
                 hundlun bar charts for saving goal
               </div>
             </div>
