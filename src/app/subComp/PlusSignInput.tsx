@@ -2,9 +2,11 @@ import React, { useState } from "react";
 
 interface PlusSignInputProps {
   addSavingGoal: (name: string, amount: number) => void;
+  removeSavingGoal: (name: string) => void;
+  currentGoals: {[key: string]: number};
 }
 
-const PlusSignInput: React.FC<PlusSignInputProps> = ({ addSavingGoal }) => {
+const PlusSignInput: React.FC<PlusSignInputProps> = ({ addSavingGoal, removeSavingGoal, currentGoals }) => {
   const [goalName, setGoalName] = useState("");
   const [goalAmount, setGoalAmount] = useState("");
   const [addAmount, setAddAmount] = useState("");
@@ -79,6 +81,26 @@ const PlusSignInput: React.FC<PlusSignInputProps> = ({ addSavingGoal }) => {
             </button>
           </div>
         </form>
+        <div className="flex justify-center">
+          <div className="box-content w-44 h-20 border-2 flex justify-center mt-1 font-medium text-gray-900 overflow-y-auto rounded-md text-sm">
+            <ul className="w-full">
+              {Object.keys(currentGoals).map((goalName) => (
+                <li key={goalName} className="flex flex-row justify-between items-center w-full">
+                  <button
+                    onClick={() => removeSavingGoal(goalName)}
+                    className="flex flex-row justify-between items-center w-full py-1 hover:bg-gray-100"
+                  >
+                    <span className="ml-2">{goalName}</span>
+                    <img src="/assets/icons/minus.png" alt="remove" 
+                      className="w-6 h-6 mr-1"
+                    />
+                  </button>
+                </li>
+              
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   );

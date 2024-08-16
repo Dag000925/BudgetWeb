@@ -3,24 +3,31 @@ import SavingGoal from '../charts/SavingGoal'
 import PlusSignInput from './PlusSignInput'
 
 const ParentComponent: React.FC = () => {
-    const [goalData, setGoalData] = useState([
-      {
-        
-      },
-    ]);
+    const [goalData, setGoalData] = useState<{[key: string]: number}>({})
   
     const addSavingGoal = (name: string, amount: number) => {
-      setGoalData(prevData => {
-        const newData = [...prevData];
-        newData[0] = { ...newData[0], [name]: amount };
-        return newData;
-      });
+      setGoalData(prevData => ({
+        ...prevData,
+        [name]: amount
+      }))
     };
+
+    const removeSavingGoal = (name: string) => {
+      setGoalData(prevData => {
+        const newData = {...prevData};
+        delete newData[name];
+        return newData
+      })
+    }
   
     return (
       <div>
-        <SavingGoal goalData={goalData} />
-        <PlusSignInput addSavingGoal={addSavingGoal} />
+        <SavingGoal goalData = {[goalData]}/>
+        <PlusSignInput 
+          addSavingGoal={addSavingGoal} 
+          removeSavingGoal = {removeSavingGoal}
+          currentGoals={goalData}
+        />
       </div>
     );
   };

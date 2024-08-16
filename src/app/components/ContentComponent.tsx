@@ -22,9 +22,8 @@ import SavingGoal from "../charts/SavingGoal";
 
 import PlusSignInput from "../subComp/PlusSignInput";
 
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
-
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
 
 const { Content } = Layout;
 const { RangePicker } = DatePicker;
@@ -107,19 +106,25 @@ const ContentComponent: React.FC = () => {
     setShowInputs(false);
   };
 
-  const [goalData, setGoalData] = useState([
-    {
-    },
-  ]);
+  const [goalData, setGoalData] = useState<{[key: string]: number}>({});
 
   const addSavingGoal = (name: string, amount: number) => {
-    setGoalData(prevData => {
-      const newData = [...prevData];
-      newData[0] = { ...newData[0], [name]: amount };
-      return newData;
-    });
+    setGoalData(prevData => ({
+      ...prevData,
+      [name]: amount
+    }))
   };
+  const removeSavingGoal = (name: string) => {
+    setGoalData(prevData => {
+      const newData = {...prevData};
+      delete newData[name];
+      return newData;
+    })
+  }
+
   
+
+
   return (
     <Content className="w-screen h-full flex">
       <div className="flex w-full h-full">
@@ -178,17 +183,30 @@ const ContentComponent: React.FC = () => {
                     Saving Goal
                   </h1>
                   <div className="flex items-center space-x-2">
-                    <Popup trigger={<button className="w-13 h-12" onClick={() => console.log('plus clicked')}>
-                      <img
-                        src="/assets/icons/plus.png"
-                        alt="plus sign"
-                        className="w-10 h-10"
-                      />
-                      
-                    </button>} position="left center">
-                      <div><PlusSignInput addSavingGoal={addSavingGoal}/></div>
+                    <Popup
+                      trigger={
+                        <button
+                          className="w-13 h-12"
+                          onClick={() => console.log("plus clicked")}
+                        >
+                          <img
+                            src="/assets/icons/plus.png"
+                            alt="plus sign"
+                            className="w-10 h-10"
+                          />
+                        </button>
+                      }
+                      position="left center"
+                    >
+                      <div>
+                        <PlusSignInput
+                          addSavingGoal={addSavingGoal}
+                          removeSavingGoal={removeSavingGoal}
+                          currentGoals={goalData}
+                        />
+                      </div>
                     </Popup>
-                    <button onClick={() => console.log('minus clicked')}>
+                    <button onClick={() => console.log("minus clicked")}>
                       <img
                         src="/assets/icons/minus.png"
                         alt="minus sign"
@@ -198,7 +216,7 @@ const ContentComponent: React.FC = () => {
                   </div>
                 </div>
                 <hr className="h-px bg-gray-200 w-96 mx-auto mb-4"></hr>
-                <SavingGoal goalData={goalData}/>
+                <SavingGoal goalData={[goalData]} />
               </div>
             </div>
           </div>

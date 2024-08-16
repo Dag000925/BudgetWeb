@@ -13,20 +13,6 @@ import {
 
 import PlusSignInput from "../subComp/PlusSignInput";
 
-
-const goalData = [
-  {
-    Savings: 4000,
-    Investments: 3000,
-    Expenses: 2000,
-    Rent: 1200,
-    Groceries: 300,
-    Utilities: 150,
-    Transportation: 100,
-    Entertainment: 200,
-  },
-];
-
 interface SavingGoalProps {
   goalData: { [key: string]: number }[];
 }
