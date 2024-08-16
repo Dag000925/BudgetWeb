@@ -18,6 +18,14 @@ import LineChart from "../charts/LineChart";
 
 import EmojiButton from "../subComp/EmojiButton";
 
+import SavingGoal from "../charts/SavingGoal";
+
+import PlusSignInput from "../subComp/PlusSignInput";
+
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+
+
 const { Content } = Layout;
 const { RangePicker } = DatePicker;
 
@@ -99,20 +107,36 @@ const ContentComponent: React.FC = () => {
     setShowInputs(false);
   };
 
+  const [goalData, setGoalData] = useState([
+    {
+    },
+  ]);
+
+  const addSavingGoal = (name: string, amount: number) => {
+    setGoalData(prevData => {
+      const newData = [...prevData];
+      newData[0] = { ...newData[0], [name]: amount };
+      return newData;
+    });
+  };
+  
   return (
     <Content className="w-screen h-full flex">
       <div className="flex w-full h-full">
         <div className="w-1/2 h-full flex flex-col items-center justify-center">
           <div className="flex flex-col items-center pt-mx-auto">
-            
             <div className="box-content bg-white grid items-center justify-center border-2 rounded-lg w-full h-[550px]">
-              <h1 className="font-bold text-xl mb-4 mt-4 text-center">Expense per day</h1>
+              <h1 className="font-bold text-xl mb-4 mt-4 text-center">
+                Expense per day
+              </h1>
               <hr className="h-px bg-gray-200 w-72 mx-auto"></hr>
               <PieChart data={data} />
             </div>
             <div className="pt-3">
               <div className="flex flex-col box-content bg-white items-center justify-center border-2 rounded-lg">
-                <h1 className="font-bold text-xl mb-4 mt-4">Expense by range</h1>
+                <h1 className="font-bold text-xl mb-4 mt-4">
+                  Expense by range
+                </h1>
                 <hr className="h-px bg-gray-200 w-72 mx-auto mb-4"></hr>
                 <RangePicker presets={rangePresets} onChange={onRangeChange} />
                 <LineChart data={data} />
@@ -131,17 +155,50 @@ const ContentComponent: React.FC = () => {
                 <EmojiButton />
               </div>
               <div className="box-content w-[50%] h-96 mr-10 border-2 bg-white rounded-lg p-4">
-                <h1 className="font-bold text-xl ml-4 mb-4 text-center">Ask AI</h1>
+                <h1 className="font-bold text-xl ml-4 mb-4 text-center">
+                  Ask AI
+                </h1>
                 <hr className="h-px bg-gray-200 w-72 mx-auto mb-4"></hr>
-                end AI shaana gd bgashd pesda 22nd
+                end AI shaan pesda, ai-d prompt udhud saving goal bolon expense
+                ruu add hiih --"Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate
+                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                sint occaecat cupidatat non proident, sunt in culpa qui officia
+                deserunt mollit anim id est laborum."
               </div>
             </div>
             {/* <div className="flex justify-around m-10 shrink "></div> */}
             <div className="pl-3 pt-16">
               <div className="box-content w-[95%] h-[413px] mr-10 border-2 bg-white rounded-lg p-4">
-                <h1 className="font-bold text-xl ml-4 mb-4 text-center">Saving Goal</h1>
-                <hr className="h-px bg-gray-200 w-72 mx-auto mb-4"></hr>
-                hundlun bar charts for saving goal
+                <div className="flex flex-row items-center justify-between">
+                  <h1 className="font-bold text-xl ml-4 mb-4 flex-grow text-center">
+                    Saving Goal
+                  </h1>
+                  <div className="flex items-center space-x-2">
+                    <Popup trigger={<button className="w-13 h-12" onClick={() => console.log('plus clicked')}>
+                      <img
+                        src="/assets/icons/plus.png"
+                        alt="plus sign"
+                        className="w-10 h-10"
+                      />
+                      
+                    </button>} position="left center">
+                      <div><PlusSignInput addSavingGoal={addSavingGoal}/></div>
+                    </Popup>
+                    <button onClick={() => console.log('minus clicked')}>
+                      <img
+                        src="/assets/icons/minus.png"
+                        alt="minus sign"
+                        className="w-10"
+                      />
+                    </button>
+                  </div>
+                </div>
+                <hr className="h-px bg-gray-200 w-96 mx-auto mb-4"></hr>
+                <SavingGoal goalData={goalData}/>
               </div>
             </div>
           </div>

@@ -3,7 +3,7 @@ import { LuUsers } from "react-icons/lu";
 
 const About: React.FC = () => {
   return (
-    <div id="pageAbout" className="flex flex-col w-screen h-screen bg-green-100">
+    <div id="pageAbout" className="flex flex-col w-screen h-screen bg-customPurple">
       <div className="h-[70%] flex flex-row w-screen text-black items-center justify-center">
         <div className="max-w-2xl text-center outline outline-gray-200 outline-offset-8">
           <h1 className="italic text-3xl font-semibold pb-5">random text</h1>

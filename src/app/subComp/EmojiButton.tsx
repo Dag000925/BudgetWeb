@@ -71,13 +71,13 @@ const EmojiButton: React.FC = () => {
             text: "Transportation",
           },
           {
-            src: "/assets/dog.png",
+            src: "/assets/icons/add.png",
             alt: "custom icon",
             text: "Custom",
           },
         ].map((item, index) => (
-          <button key={index} className="flex flex-col items-center justify-center box-content border-2 border-b-4 rounded-xl">
-            <img src={item.src} alt={item.alt} className="w-12 h-12 mb-2" />
+          <button key={index} className="flex flex-col m-2 items-center justify-center box-content border-2 border-b-4 rounded-xl">
+            <img src={item.src} alt={item.alt} className="w-12 h-12 mb-3" />
             <p className="text-xs text-center">{item.text}</p>
           </button>
         ))}

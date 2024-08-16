@@ -10,6 +10,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors:{
+        customPurple: '#5F4B8BFF',
+        customBiege: '#E69A8DFF',
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
